@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<title>Həyatımm ❤️</title>
+
+<style>
+body{
+    background:linear-gradient(to bottom,#ffd6e7,#fff);
+    color:#333;
+    text-align:center;
+    font-family:Arial;
+    overflow-x:hidden;
+}
+
+h1,h2{
+    color:#ff4d8d;
+}
+
+/* Kilid ekranı */
+#lockScreen{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:#ffb6c1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+input{
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    margin-top:10px;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:15px;
+    background:#ff4d8d;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    margin:10px;
+}
+
+button:hover{
+    background:#ff1e6b;
+}
+
+#slide{
+    width:320px;
+    border-radius:20px;
+    margin-top:20px;
+    box-shadow:0 0 15px pink;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Kilid ekran -->
+<div id="lockScreen">
+    <h1>Bu sayt yalnız Həyatımm üçündür ❤️</h1>
+    <input id="nameInput" placeholder="Adını yaz">
+    <button onclick="checkName()">Aç</button>
+</div>
+
+<h1>Məriyam Salehzadə ❤️</h1>
+<h2>Sən mənim Həyatımm-san 💕</h2>
+
+<img id="slide" src="sekil1.jpg">
+
+<h2 id="loveDays"></h2>
+
+<button onclick="playMusic()">Musiqini Başlat 🎶</button>
+
+<br>
+
+<iframe width="320" height="180"
+src="https://youtu.be/BoMrp_oerDc?si=2PuFmbYAuvKVToy1"
+allow="autoplay">
+</iframe>
+
+<br>
+
+<button onclick="surprise()">Sürprizi Aç 🎁</button>
+<button onclick="final()">Final Mesaj ❤️</button>
+
+<audio id="music" src="music.mp3"></audio>
+
+<script>
+
+/* Kilid ekran */
+function checkName(){
+    let name=document.getElementById("nameInput").value.toLowerCase();
+
+    if(name.includes("məriyam")){
+        document.getElementById("lockScreen").style.display="none";
+    }else{
+        alert("Bu sayt yalnız Məriyam üçündür ❤️");
+    }
+}
+
+/* Slideshow */
+let images=["sekil1.jpg","sekil2.jpg","sekil3.jpg"];
+let i=0;
+
+setInterval(()=>{
+    i++;
+    if(i>=images.length){i=0;}
+    document.getElementById("slide").src=images[i];
+},3000);
+
+/* Ürək yağışı */
+setInterval(()=>{
+    let heart=document.createElement("div");
+    heart.innerHTML="💖";
+    heart.style.position="fixed";
+    heart.style.left=Math.random()*100+"%";
+    heart.style.top="-20px";
+    heart.style.fontSize="26px";
+    document.body.appendChild(heart);
+
+    let fall=setInterval(()=>{
+        heart.style.top=parseInt(heart.style.top)+5+"px";
+
+        if(parseInt(heart.style.top)>window.innerHeight){
+            heart.remove();
+            clearInterval(fall);
+        }
+    },50);
+
+},500);
+
+/* Tanışlıq gün sayacı */
+let startDate=new Date("2025-06-07");
+let today=new Date();
+
+let diff=Math.floor((today-startDate)/(1000*60*60*24));
+
+document.getElementById("loveDays").innerHTML=
+"Həyatımm, biz artıq "+diff+" gündür birlikdəyik ❤️";
+
+/* Musiqi */
+function playMusic(){
+    document.getElementById("music").play();
+}
+
+/* Sürpriz mesaj */
+function surprise(){
+    alert("Həyatımm, sən həyatımı rəngləndirən ən gözəl möcüzəsən 💕");
+}
+
+/* Final ekran */
+function final(){
+    document.body.innerHTML=
+    "<h1 style='color:#ff4d8d;margin-top:35vh;'>"+
+    "Tu es anima mea et cor meum ❤️<br><br>"+
+    "Mariam Salehzade<br><br>"+
+    "Səni sonsuz sevirəm, Həyatımm 💕"+
+    "</h1>";
+}
+
+</script>
+
+</body>
+</html>
